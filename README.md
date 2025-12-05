@@ -14,6 +14,7 @@ A basic PWA notepad built in JS
 - Keyboard shortcuts for note actions and search
 - Mobile-friendly navigation drawer
 - Lightweight and fluid
+- Export current note as a standalone .html file
 
 ## Install
 ### As a normal app (PWA):

@@ -1,4 +1,4 @@
-const CACHE_NAME = "why2";
+const CACHE_NAME = "why3";
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
@@ -15,10 +15,6 @@ const FILES_TO_CACHE = [
   "./app/scripts/texting.js",
   "./app/stylesheets/app.css",
   "./app/stylesheets/fontawesome.css",
-  "./app/webfonts/fa-brands-400.woff2",
-  "./app/webfonts/fa-regular-400.woff2",
-  "./app/webfonts/fa-solid-900.woff2",
-  "./app/webfonts/fa-v4compatibility.woff2"
 ];
 
 self.addEventListener("install", (event) => {
@@ -41,6 +37,11 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") {
+    return;
+  }
+
+  if (event.request.destination === "font") {
+    event.respondWith(fetch(event.request));
     return;
   }
 

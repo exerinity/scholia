@@ -5,10 +5,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>why.txt</title>
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#000000">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="/app/stylesheets/app.css">
   <link rel="stylesheet" href="/app/stylesheets/fontawesome.css">
+  <link rel="preload" href="/app/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/app/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/app/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 
 <body data-theme="light">
@@ -112,6 +115,8 @@
               aria-label="Undo"><i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i></button>
             <button class="fbtn" type="button" data-command="redo" aria-pressed="false" title="Redo (Ctrl+Y)"
               aria-label="Redo"><i class="fa-solid fa-arrow-rotate-right" aria-hidden="true"></i></button>
+            <button class="fbtn" type="button" id="exp_html_btn" aria-pressed="false" title="Export current note as HTML"
+              aria-label="Export as HTML"><i class="fa-solid fa-file-export" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>

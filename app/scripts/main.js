@@ -27,6 +27,7 @@ const els = {
   font_sel: document.getElementById("font_sel"),
   size_sel: document.getElementById("size_sel"),
   clr_btn: document.getElementById("clr_btn"),
+  exp_html_btn: document.getElementById("exp_html_btn"),
   note_tpl: document.getElementById("note_tpl"),
   menu_btn: document.getElementById("menu_btn"),
   nav_layer: document.getElementById("nav_layer")
@@ -98,6 +99,60 @@ els.size_sel.addEventListener("change", (event) => {
 els.clr_btn.addEventListener("click", () => {
   txt.apply("removeFormat");
 });
+
+function sanitizeFileName(name) {
+  const base = (name || "untitled").toString().trim();
+  const cleaned = base
+    .replace(/[\u0000-\u001F\u007F]/g, " ")
+    .replace(/[<>:"/\\|?*]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 80);
+  return cleaned || "untitled";
+}
+
+function exportActiveAsHtml() {
+  if (!note_ctrl || typeof note_ctrl.current !== "function") {
+    return;
+  }
+  const note = note_ctrl.current();
+  if (!note) {
+    return;
+  }
+  const title = sanitizeFileName(note.title || "untitled");
+  const content = txt.cleanHtml(note.content || "");
+  const doc = `<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>${title} - why.txt</title>\n<meta name="generator" content="why.txt">\n<style>
+    html, body { background: #000000ff; color: #ffffffff; }
+    body { max-width: 720px; margin: 2rem auto; padding: 0 1rem; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+    .note-title { margin: 0 0 1rem 0; font-size: 1.75rem; line-height: 1.2; }
+    .note-meta { color: #d3d3d3ff; font-size: .9rem; margin-bottom: 1.25rem; }
+    .note-content :is(p, ul, ol, pre, blockquote) { margin: 1rem 0; }
+    .note-content pre { background: #000000ff; padding: .75rem; border-radius: 6px; overflow: auto; }
+    .note-content code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .note-content blockquote { border-left: 4px solid #ddd; padding: .25rem .75rem; color: #555; }
+    .note-footer { margin-top: 2rem; font-size: .85rem; color: #d3d3d3ff; }
+    .note-footer a { color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
+    .note-footer a:hover { text-decoration: underline; }
+  </style>\n</head>\n<body>\n<h1 class="note-title"></h1>\n<article class="note-content">${content}</article>\n<footer class="note-footer"><a href="https://why.exerinity.com" target="_blank" rel="noopener noreferrer">why.txt</a></footer>\n</body>\n</html>`;
+
+  try {
+    const blob = new Blob([doc], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${title}.html`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  } catch (err) {
+    console.error("Failed to export HTML:", err);
+  }
+}
+
+if (els.exp_html_btn) {
+  els.exp_html_btn.addEventListener("click", exportActiveAsHtml);
+}
 
 function useTheme(theme) {
   const next = theme === "dark" ? "dark" : "light";

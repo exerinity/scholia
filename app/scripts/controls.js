@@ -93,6 +93,14 @@ export function makeNoteCtrl({
     return note_set.find((note) => note.id === active_id) || null;
   }
 
+  function current() {
+    const note = grabActive();
+    if (!note) {
+      return null;
+    }
+    return { ...note };
+  }
+
   function pick(id, { focusEditor = true } = {}) {
     const note = note_set.find((entry) => entry.id === id);
     if (!note) {
@@ -298,6 +306,7 @@ export function makeNoteCtrl({
   return {
     init,
     bind,
-    make: addNote
+    make: addNote,
+    current
   };
 }
