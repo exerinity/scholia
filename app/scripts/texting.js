@@ -1,14 +1,15 @@
-const cmd_ok = typeof document.queryCommandSupported === "function";
+;(function (global) {
+  const cmd_ok = typeof document.queryCommandSupported === "function";
 
-export function makeTxt({
-  editor: edit_area,
-  wordCountElement: word_node,
-  formatButtons: fmt_btns,
-  alignmentButtons: align_btns,
-  fontFamilySelect: font_sel,
-  fontSizeSelect: size_sel,
-  emptyParagraph: empty_p
-}) {
+  function makeTxt({
+    editor: edit_area,
+    wordCountElement: word_node,
+    formatButtons: fmt_btns,
+    alignmentButtons: align_btns,
+    fontFamilySelect: font_sel,
+    fontSizeSelect: size_sel,
+    emptyParagraph: empty_p
+  }) {
   const cmd_hooks = new Set();
 
   function onCmd(fn) {
@@ -220,4 +221,6 @@ export function makeTxt({
   };
 }
 
-export { cmd_ok };
+  global.makeTxt = makeTxt;
+  global.cmd_ok = cmd_ok;
+})(window);

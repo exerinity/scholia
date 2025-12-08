@@ -1,6 +1,3 @@
-import { makeTxt } from "./texting.js";
-import { makeNoteCtrl } from "./controls.js";
-
 const store_keys = {
   notes: "notepad:pwa:notes",
   theme: "notepad:pwa:theme",

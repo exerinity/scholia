@@ -1,11 +1,12 @@
-export function makeNoteCtrl({
-  storageKeys: store_keys,
-  defaultNoteContent: def_html,
-  emptyParagraph: empty_p,
-  dom,
-  texting: txt,
-  setSavingState: set_save
-}) {
+;(function (global) {
+  function makeNoteCtrl({
+    storageKeys: store_keys,
+    defaultNoteContent: def_html,
+    emptyParagraph: empty_p,
+    dom,
+    texting: txt,
+    setSavingState: set_save
+  }) {
   const {
     title_in,
     note_list,
@@ -256,7 +257,7 @@ export function makeNoteCtrl({
       return;
     }
     const bypassConfirm = event && event.shiftKey;
-    if (!bypassConfirm && !confirm("Are you sure you want to delete this note, FOREVER??")) {
+    if (!bypassConfirm && !confirm("Are you sure?")) {
       return;
     }
     note_set = note_set.filter((entry) => entry.id !== note.id);
@@ -310,3 +311,6 @@ export function makeNoteCtrl({
     current
   };
 }
+
+  global.makeNoteCtrl = makeNoteCtrl;
+})(window);

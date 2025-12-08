@@ -16,15 +16,15 @@
   <div class="shell">
     <aside>
       <div class="brow">
-        <h1>why.txt</h1>
-        <button type="button" id="ins_btn" hidden>install</button>
+        <h1 id="whytext">why.txt</h1>
+        <button type="button" id="ins_btn" hidden title="Install why.txt as a Progressive Web App, giving you a more app-like experience">install</button>
       </div>
       <div class="nact">
         <button type="button" id="new_btn" title="Create a new note (Alt+N or Insert)"><i class="fa-solid fa-plus"
             aria-hidden="true"></i></button>
         <button type="button" id="dup_btn" title="Duplicate current note" disabled><i class="fa-solid fa-copy"
             aria-hidden="true"></i></button>
-        <button type="button" id="del_btn" title="Delete current note (Alt+Delete)" disabled><i class="fa-solid fa-trash"
+        <button type="button" id="del_btn" title="Delete current note (Alt+Delete) - hold shift to skip confirmation" disabled><i class="fa-solid fa-trash"
             aria-hidden="true"></i></button>
       </div>
       <div class="sfield">
@@ -33,7 +33,7 @@
           title="Search notes (Alt+S or Ctrl/Cmd+K)">
       </div>
       <ul class="nlist" id="note_list"></ul>
-      <div class="estate" id="empty_box" hidden>Nothing!</div>
+      <div class="estate" id="empty_box" hidden><noscript>Nothing!</noscript>Nothing!</div>
     </aside>
     <div class="nav-layer" id="nav_layer" aria-hidden="true"></div>
     <main>
@@ -118,7 +118,7 @@
           </div>
         </div>
       </div>
-      <section id="edit_area" contenteditable="true" spellcheck="true" aria-label="Note editor"></section>
+      <section id="edit_area" contenteditable="true" spellcheck="true" aria-label="Note editor"><noscript>why.txt requires JavaScript to function properly. Please enable it.</noscript></section>
       <div class="sbar">
         <div class="sgroup">
           <span id="save_lbl"><i class="fa-solid fa-check"></i></span>
@@ -128,6 +128,7 @@
           <span id="word_lbl">0 words</span> -
           <a class="meta-link" href="https://github.com/exerinity/why" target="_blank" rel="noopener noreferrer">source</a> -
           <a class="meta-link" href="https://exerinity.dev" target="_blank" rel="noopener noreferrer">by exerinity</a> -
+          <a class="meta-link" href="https://exerinity.dev/projects/why" target="_blank" rel="noopener noreferrer">about</a>
           <button type="button" id="theme_btn">Lumos!</button>
         </div>
       </div>
@@ -144,7 +145,10 @@
       </button>
     </li>
   </template>
-  <script type="module" src="/app/scripts/main.js"></script>
+  <script src="/app/scripts/texting.js" defer></script>
+  <script src="/app/scripts/controls.js" defer></script>
+  <script src="/app/scripts/main.js" defer></script>
+  <script src="/app/scripts/message.js" defer></script>
 </body>
 
 </html>
