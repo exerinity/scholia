@@ -1,4 +1,4 @@
-const CACHE_NAME = "why-v4.5";
+const CACHE_NAME = "scholia-v4.5";
 
 const STATIC_ASSETS = [
   "/",

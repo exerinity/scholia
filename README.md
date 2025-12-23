@@ -1,4 +1,4 @@
-#  why.txt
+# Scholia (previously "why.txt")
 A basic PWA notepad built in JS
 
 ## Stuff it has

@@ -1,8 +1,9 @@
 {
-  "name": "why.txt",
+  "name": "Scholia - notepad",
+  "short_name": "Scholia",
   "description": "a basic notepad",
   "start_url": ".",
-  "id": "com.exerinity.why",
+  "id": "com.exerinity.scholia",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",

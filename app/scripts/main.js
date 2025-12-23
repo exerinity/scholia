@@ -118,7 +118,7 @@ function exportActiveAsHtml() {
   }
   const title = sanitizeFileName(note.title || "untitled");
   const content = txt.cleanHtml(note.content || "");
-  const doc = `<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>${title} - why.txt</title>\n<meta name="generator" content="why.txt">\n<style>
+  const doc = `<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>${title} - Scholia</title>\n<meta name="generator" content="Scholia">\n<style>
     html, body { background: #000000ff; color: #ffffffff; }
     body { max-width: 720px; margin: 2rem auto; padding: 0 1rem; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
     .note-title { margin: 0 0 1rem 0; font-size: 1.75rem; line-height: 1.2; }
@@ -130,7 +130,7 @@ function exportActiveAsHtml() {
     .note-footer { margin-top: 2rem; font-size: .85rem; color: #d3d3d3ff; }
     .note-footer a { color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
     .note-footer a:hover { text-decoration: underline; }
-  </style>\n</head>\n<body>\n<h1 class="note-title"></h1>\n<article class="note-content">${content}</article>\n<footer class="note-footer"><a href="https://why.exerinity.com" target="_blank" rel="noopener noreferrer">why.txt</a></footer>\n</body>\n</html>`;
+  </style>\n</head>\n<body>\n<h1 class="note-title"></h1>\n<article class="note-content">${content}</article>\n<footer class="note-footer"><a href="https://scholia.exerinity.com" target="_blank" rel="noopener noreferrer">Scholia</a></footer>\n</body>\n</html>`;
 
   try {
     const blob = new Blob([doc], { type: "text/html;charset=utf-8" });
